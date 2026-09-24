@@ -1,0 +1,24 @@
+# Dependencies
+node_modules/
+
+# Production build
+dist/
+
+# Environment variables
+.env
+.env.*
+!.env.example
+
+# Temporary images
+temp_*.png
+
+# Logs
+*.log
+
+# IDE
+.vscode/
+.idea/
+
+# OS
+.DS_Store
+Thumbs.db
