@@ -85,16 +85,16 @@ export default function Hero({ onOpenConsultation }) {
             backgroundColor: "#faf8f5",
           }}
         >
-          {/* Stronger contrast feather so the headline remains fully readable */}
-          <div className="absolute inset-0 bg-gradient-to-r from-[#faf8f5] via-[#faf8f5]/90 to-[#faf8f5]/25 w-full md:w-[72%] lg:w-[60%]"></div>
+          {/* Subtle gradient feather on the left only, leaving the entire right room and wall name 100% visible */}
+          <div className="absolute inset-0 bg-gradient-to-r from-[#faf8f5] via-[#faf8f5]/85 to-transparent w-full md:w-[60%] lg:w-[48%]"></div>
           {/* Bottom gentle fade into Why Mangi */}
           <div className="absolute bottom-0 inset-x-0 h-24 bg-gradient-to-t from-[#faf8f5] via-[#faf8f5]/60 to-transparent"></div>
         </div>
       </div>
 
-      {/* Main Hero Container: Left Content (Centered, clean text without any background card) */}
+      {/* Main Hero Container: Left Content (Card on mobile only, transparent as initial on desktop) */}
       <div className="relative z-10 max-w-[1360px] mx-auto px-5 sm:px-8 md:px-12 w-full my-auto py-1 sm:py-3">
-        <div className="max-w-xl lg:max-w-2xl flex flex-col justify-center rounded-[24px] border border-[#e9ddc7] bg-[#f8f4ee]/85 px-4 py-4 sm:px-5 sm:py-5 shadow-[0_18px_35px_rgba(140,110,60,0.08)] md:max-w-[620px]">
+        <div className="max-w-xl lg:max-w-2xl flex flex-col justify-center rounded-[24px] border border-[#e9ddc7] bg-[#f8f4ee]/85 px-4 py-4 shadow-[0_18px_35px_rgba(140,110,60,0.08)] md:bg-transparent md:border-0 md:p-0 md:shadow-none md:rounded-none md:max-w-[620px]">
           {/* Tagline Badge */}
           <div
             className={`hero-from-image ${isLoaded ? "is-in" : ""} inline-flex items-center gap-2 px-3 py-1 rounded-full bg-[#f3ebd9]/95 border border-[#e2d5bd] text-[#a67c33] text-[10px] sm:text-[11px] font-sans font-bold tracking-[0.2em] uppercase mb-1.5 sm:mb-3 w-fit shadow-sm`}
