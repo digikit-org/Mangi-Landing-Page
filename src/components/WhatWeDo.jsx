@@ -198,15 +198,17 @@ export default function WhatWeDo({ onOpenConsultation }) {
         >
           {services.map((svc, index) => {
             const Icon = svc.icon;
-            const rotate = (index % 2 === 0 ? -1 : 1) * (index + 1) * 1.1;
+            const rotate = (index % 2 === 0 ? -1 : 1) * (index + 1) * 0.9;
             return (
               <div
                 key={svc.id}
                 onClick={() => onOpenConsultation(svc.title)}
                 className={`card-spill ${isInView ? "is-visible" : ""} w-[280px] sm:w-[320px] md:w-[350px] shrink-0 snap-start group bg-white rounded-xl overflow-hidden border border-[#e8dfcf] shadow-sm hover:shadow-lg transition-all duration-300 card-hover-lift cursor-pointer flex flex-col justify-between`}
                 style={{
-                  transitionDelay: `${index * 130}ms`,
+                  transitionDelay: `${index * 150}ms`,
                   "--card-rotate": `${rotate}deg`,
+                  "--card-shift": `${index * -28}px`,
+                  zIndex: 10 + index,
                 }}
               >
                 <div>

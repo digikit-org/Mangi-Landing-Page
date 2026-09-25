@@ -1,7 +1,7 @@
 import React from "react";
 import Logo from "./Logo";
 import { Phone, Mail, ArrowRight } from "lucide-react";
-import { FaWhatsapp } from "react-icons/fa";
+import WhatsAppIcon from "./WhatsAppIcon";
 
 export default function Footer({ onOpenConsultation }) {
   const phone = "918088196750";
@@ -41,7 +41,7 @@ export default function Footer({ onOpenConsultation }) {
               rel="noopener noreferrer"
               className="px-6 py-4 rounded-md border border-[#c5a059]/60 hover:bg-[#c5a059]/10 text-white font-semibold text-sm tracking-wide inline-flex items-center justify-center gap-2 transition-all group"
             >
-              <FaWhatsapp className="w-5 h-5 text-[#25D366] transition-transform duration-300 group-hover:scale-110" />
+              <WhatsAppIcon className="w-5 h-5 text-[#25D366] transition-transform duration-300 group-hover:scale-110" />
               <span>WhatsApp Us</span>
             </a>
           </div>
@@ -98,7 +98,7 @@ export default function Footer({ onOpenConsultation }) {
                 className="p-4 rounded-xl bg-[#211f1c] border border-[#332f2b] hover:border-[#25D366] transition-all group flex flex-col justify-between"
               >
                 <div className="flex items-center gap-2.5 text-white text-xs font-semibold mb-1">
-                  <FaWhatsapp className="w-5 h-5 text-white transition-transform duration-300 group-hover:scale-110" />
+                  <WhatsAppIcon className="w-5 h-5 text-[#25D366] transition-transform duration-300 group-hover:scale-110" />
                   <span>WhatsApp Us</span>
                 </div>
 
