@@ -7,9 +7,14 @@ import {
   ChevronLeft,
   ChevronRight,
 } from "lucide-react";
+import useInView from "../hooks/useInView";
 
 export default function Process({ onOpenConsultation }) {
   const scrollRef = useRef(null);
+  const [sectionRef, isInView] = useInView({
+    threshold: 0.2,
+    triggerOnce: false,
+  });
   const [canScrollLeft, setCanScrollLeft] = useState(false);
   const [canScrollRight, setCanScrollRight] = useState(true);
 
@@ -78,6 +83,7 @@ export default function Process({ onOpenConsultation }) {
 
   return (
     <section
+      ref={sectionRef}
       id="process"
       className="w-full py-12 sm:py-16 bg-[#faf8f5] border-t border-[#eee7dc]"
     >
@@ -94,7 +100,9 @@ export default function Process({ onOpenConsultation }) {
 
             <h2 className="font-display text-2xl sm:text-3xl md:text-4xl font-medium text-[#171614] tracking-tight">
               A Better Space.{" "}
-              <span className="italic font-semibold">Without the Headache.</span>
+              <span className="italic font-semibold">
+                Without the Headache.
+              </span>
             </h2>
           </div>
 
@@ -137,12 +145,17 @@ export default function Process({ onOpenConsultation }) {
           ref={scrollRef}
           className="horizontal-scroller flex gap-5 pb-3 pt-1 snap-x snap-mandatory"
         >
-          {steps.map((step) => {
+          {steps.map((step, index) => {
             const Icon = step.icon;
+            const rotate = (index % 2 === 0 ? -1 : 1) * (index + 1) * 1.4;
             return (
               <div
                 key={step.num}
-                className="w-[280px] sm:w-[320px] md:w-[340px] shrink-0 snap-start group relative bg-white rounded-xl p-5 sm:p-6 border border-[#e8dfcf] shadow-sm hover:shadow-lg transition-all duration-300 card-hover-lift flex flex-col justify-between"
+                className={`card-spill ${isInView ? "is-visible" : ""} w-[280px] sm:w-[320px] md:w-[340px] shrink-0 snap-start group relative bg-white rounded-xl p-5 sm:p-6 border border-[#e8dfcf] shadow-sm hover:shadow-lg transition-all duration-300 card-hover-lift flex flex-col justify-between`}
+                style={{
+                  transitionDelay: `${index * 120}ms`,
+                  "--card-rotate": `${rotate}deg`,
+                }}
               >
                 {/* Step Number & Icon */}
                 <div>
@@ -187,7 +200,8 @@ export default function Process({ onOpenConsultation }) {
                 Guaranteed Handover Timelines & Transparent Commercial Estimates
               </h4>
               <p className="text-xs text-[#665e55] mt-0.5">
-                Every project runs on strict milestones with zero unexpected budget revisions.
+                Every project runs on strict milestones with zero unexpected
+                budget revisions.
               </p>
             </div>
           </div>

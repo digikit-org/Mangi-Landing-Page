@@ -1,5 +1,6 @@
 import React from "react";
 import { ArrowRight } from "lucide-react";
+import useInView from "../hooks/useInView";
 
 export const spacesData = [
   {
@@ -77,8 +78,14 @@ export const spacesData = [
 ];
 
 export default function FeaturedSpaces({ onSelectSpace }) {
+  const [sectionRef, isInView] = useInView({
+    threshold: 0.2,
+    triggerOnce: false,
+  });
+
   return (
     <section
+      ref={sectionRef}
       id="featured-spaces"
       className="w-full py-12 sm:py-16 bg-[#faf8f5]"
     >
@@ -101,38 +108,45 @@ export default function FeaturedSpaces({ onSelectSpace }) {
 
         {/* 4 Cards Grid */}
         <div className="mobile-card-scroll md:grid-cols-2 lg:grid-cols-4 gap-5 sm:gap-6">
-          {spacesData.map((space) => (
-            <div
-              key={space.id}
-              onClick={() => onSelectSpace(space)}
-              className="mobile-card-item group bg-white rounded-xl overflow-hidden border border-[#eae3d5] shadow-sm hover:shadow-xl transition-all duration-300 flex flex-col cursor-pointer card-hover-lift"
-            >
-              {/* Card Image Container with overflow hidden for zoom */}
-              <div className="relative aspect-[16/10] w-full overflow-hidden bg-[#e4ded3]">
-                <img
-                  src={space.image}
-                  alt={space.title}
-                  loading="lazy"
-                  onError={(e) => {
-                    // Fallback to high-res Unsplash image if local crop fails
-                    e.currentTarget.src = space.hdImage;
-                  }}
-                  className="w-full h-full object-cover object-center transform transition-transform duration-700 ease-out group-hover:scale-108"
-                />
-                <div className="absolute inset-0 bg-black/0 group-hover:bg-black/10 transition-colors duration-300"></div>
-              </div>
+          {spacesData.map((space, index) => {
+            const rotate = (index % 2 === 0 ? -1 : 1) * (index + 1) * 1.3;
+            return (
+              <div
+                key={space.id}
+                onClick={() => onSelectSpace(space)}
+                className={`card-spill ${isInView ? "is-visible" : ""} mobile-card-item group bg-white rounded-xl overflow-hidden border border-[#eae3d5] shadow-sm hover:shadow-xl transition-all duration-300 flex flex-col cursor-pointer card-hover-lift`}
+                style={{
+                  transitionDelay: `${index * 150}ms`,
+                  "--card-rotate": `${rotate}deg`,
+                }}
+              >
+                {/* Card Image Container with overflow hidden for zoom */}
+                <div className="relative aspect-[16/10] w-full overflow-hidden bg-[#e4ded3]">
+                  <img
+                    src={space.image}
+                    alt={space.title}
+                    loading="lazy"
+                    onError={(e) => {
+                      // Fallback to high-res Unsplash image if local crop fails
+                      e.currentTarget.src = space.hdImage;
+                    }}
+                    className="w-full h-full object-cover object-center transform transition-transform duration-700 ease-out group-hover:scale-108"
+                  />
+                  <div className="absolute inset-0 bg-black/0 group-hover:bg-black/10 transition-colors duration-300"></div>
+                </div>
 
-              {/* Card Footer Bar */}
-              <div className="p-3.5 sm:p-4 flex items-center justify-between bg-white border-t border-[#f2ede4] transition-colors duration-200 group-hover:bg-[#fbf9f5]">
-                <span className="font-sans font-semibold text-xs sm:text-sm text-[#24201d] tracking-wide group-hover:text-brand-gold transition-colors duration-200">
-                  {space.title}
-                </span>
-                <span className="inline-flex items-center justify-center text-[#78716c] group-hover:text-brand-gold transition-all duration-300 transform group-hover:translate-x-1">
-                  <ArrowRight className="w-4 h-4" />
-                </span>
+                {/* Card Footer Bar */}
+                <div className="p-3.5 sm:p-4 flex items-center justify-between bg-white border-t border-[#f2ede4] transition-colors duration-200 group-hover:bg-[#fbf9f5]">
+                  <span className="font-sans font-semibold text-xs sm:text-sm text-[#24201d] tracking-wide group-hover:text-brand-gold transition-colors duration-200">
+                    {space.title}
+                  </span>
+                  <span className="inline-flex items-center justify-center text-[#78716c] group-hover:text-brand-gold transition-all duration-300 transform group-hover:translate-x-1">
+                    <ArrowRight className="w-4 h-4" />
+                  </span>
+                </div>
               </div>
-            </div>
-          ))}
+            );
+          })}
         </div>
       </div>
     </section>

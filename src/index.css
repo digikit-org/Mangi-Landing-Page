@@ -130,3 +130,90 @@
 ::-webkit-scrollbar-thumb:hover {
   background: #b5a389;
 }
+
+/* Section Scroll-Reveal Transitions */
+.reveal-section {
+  opacity: 0;
+  transform: translateY(24px);
+  transition:
+    opacity 0.8s cubic-bezier(0.16, 1, 0.3, 1),
+    transform 0.8s cubic-bezier(0.16, 1, 0.3, 1);
+  will-change: opacity, transform;
+}
+
+.reveal-section.is-revealed {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* Playing Card Spread & Fan Effect */
+.playing-card {
+  transform-origin: 50% 115%;
+  transition:
+    transform 0.5s cubic-bezier(0.16, 1, 0.3, 1),
+    box-shadow 0.4s cubic-bezier(0.16, 1, 0.3, 1),
+    border-color 0.3s ease,
+    background-color 0.3s ease;
+  will-change: transform, box-shadow;
+}
+
+/* Natural playing card fanned spread angles */
+.playing-card-fan-0 {
+  transform: rotate(-2.5deg) translateY(3px);
+}
+.playing-card-fan-1 {
+  transform: rotate(-1deg) translateY(0px);
+}
+.playing-card-fan-2 {
+  transform: rotate(1deg) translateY(1px);
+}
+.playing-card-fan-3 {
+  transform: rotate(2.2deg) translateY(4px);
+}
+.playing-card-fan-4 {
+  transform: rotate(3.2deg) translateY(6px);
+}
+.playing-card-fan-5 {
+  transform: rotate(4deg) translateY(8px);
+}
+
+/* On hover: lifts up, straightens, scales, and elevates above neighboring cards */
+.playing-card:hover {
+  transform: translateY(-12px) rotate(0deg) scale(1.025) !important;
+  z-index: 30 !important;
+  box-shadow:
+    0 20px 30px -10px rgba(166, 124, 51, 0.22),
+    0 10px 15px -5px rgba(28, 25, 23, 0.08) !important;
+}
+
+/* Hero Staggered Elements Coming From the Image */
+.hero-from-image {
+  opacity: 0;
+  transform: translateX(45px);
+  transition:
+    opacity 0.8s cubic-bezier(0.16, 1, 0.3, 1),
+    transform 0.8s cubic-bezier(0.16, 1, 0.3, 1);
+  will-change: opacity, transform;
+}
+
+.hero-from-image.is-in {
+  opacity: 1;
+  transform: translateX(0);
+}
+
+/* Card spill-in animation for repeated section reveals */
+.card-spill {
+  opacity: 0;
+  transform: translateY(24px) rotate(var(--card-rotate, 0deg)) scale(0.96);
+  transition:
+    opacity 0.7s cubic-bezier(0.16, 1, 0.3, 1),
+    transform 0.9s cubic-bezier(0.16, 1, 0.3, 1),
+    box-shadow 0.3s ease,
+    border-color 0.3s ease;
+  will-change: opacity, transform;
+}
+
+.card-spill.is-visible {
+  opacity: 1;
+  transform: translateY(0) rotate(0deg) scale(1);
+}

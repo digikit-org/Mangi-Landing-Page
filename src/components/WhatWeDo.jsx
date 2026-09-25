@@ -9,9 +9,14 @@ import {
   ChevronLeft,
   ChevronRight,
 } from "lucide-react";
+import useInView from "../hooks/useInView";
 
 export default function WhatWeDo({ onOpenConsultation }) {
   const scrollRef = useRef(null);
+  const [sectionRef, isInView] = useInView({
+    threshold: 0.2,
+    triggerOnce: false,
+  });
   const [canScrollLeft, setCanScrollLeft] = useState(false);
   const [canScrollRight, setCanScrollRight] = useState(true);
 
@@ -118,7 +123,11 @@ export default function WhatWeDo({ onOpenConsultation }) {
   ];
 
   return (
-    <section id="services" className="w-full py-12 sm:py-16 bg-[#faf8f5]">
+    <section
+      ref={sectionRef}
+      id="services"
+      className="w-full py-12 sm:py-16 bg-[#faf8f5]"
+    >
       <div className="max-w-[1360px] mx-auto px-5 sm:px-8 md:px-12">
         {/* Section Header */}
         <div className="flex flex-col md:flex-row md:items-end justify-between mb-8 sm:mb-10 gap-4 pb-5 border-b border-[#e8dfcf]">
@@ -138,7 +147,9 @@ export default function WhatWeDo({ onOpenConsultation }) {
           {/* Scroller Controls & Consultation CTA */}
           <div className="flex items-center gap-4">
             <button
-              onClick={() => onOpenConsultation("Full Turnkey Commercial Fitout")}
+              onClick={() =>
+                onOpenConsultation("Full Turnkey Commercial Fitout")
+              }
               className="hidden sm:inline-flex items-center gap-2 text-xs font-semibold tracking-wider text-[#a67c33] hover:text-[#171614] transition-colors"
             >
               <span>Explore Turnkey Execution</span>
@@ -185,13 +196,18 @@ export default function WhatWeDo({ onOpenConsultation }) {
           ref={scrollRef}
           className="horizontal-scroller flex gap-5 pb-3 pt-1 snap-x snap-mandatory"
         >
-          {services.map((svc) => {
+          {services.map((svc, index) => {
             const Icon = svc.icon;
+            const rotate = (index % 2 === 0 ? -1 : 1) * (index + 1) * 1.1;
             return (
               <div
                 key={svc.id}
                 onClick={() => onOpenConsultation(svc.title)}
-                className="w-[280px] sm:w-[320px] md:w-[350px] shrink-0 snap-start group bg-white rounded-xl overflow-hidden border border-[#e8dfcf] shadow-sm hover:shadow-lg transition-all duration-300 card-hover-lift cursor-pointer flex flex-col justify-between"
+                className={`card-spill ${isInView ? "is-visible" : ""} w-[280px] sm:w-[320px] md:w-[350px] shrink-0 snap-start group bg-white rounded-xl overflow-hidden border border-[#e8dfcf] shadow-sm hover:shadow-lg transition-all duration-300 card-hover-lift cursor-pointer flex flex-col justify-between`}
+                style={{
+                  transitionDelay: `${index * 130}ms`,
+                  "--card-rotate": `${rotate}deg`,
+                }}
               >
                 <div>
                   {/* Clean Uniform Photo Container */}

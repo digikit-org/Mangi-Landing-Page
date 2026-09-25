@@ -7,9 +7,14 @@ import {
   ChevronLeft,
   ChevronRight,
 } from "lucide-react";
+import useInView from "../hooks/useInView";
 
 export default function WhyMangi() {
   const scrollRef = useRef(null);
+  const [sectionRef, isInView] = useInView({
+    threshold: 0.2,
+    triggerOnce: false,
+  });
   const [canScrollLeft, setCanScrollLeft] = useState(false);
   const [canScrollRight, setCanScrollRight] = useState(true);
 
@@ -70,6 +75,7 @@ export default function WhyMangi() {
 
   return (
     <section
+      ref={sectionRef}
       id="why-mangi"
       className="w-full py-10 sm:py-14 bg-[#ffffff] border-y border-[#eee7dc]"
     >
@@ -92,8 +98,9 @@ export default function WhyMangi() {
             </h2>
 
             <p className="font-sans text-[#524b43] text-xs sm:text-sm mt-2 leading-relaxed">
-              A great commercial interior isn't just about aesthetics. It's about
-              creating a space that works for your people, clients and business.
+              A great commercial interior isn't just about aesthetics. It's
+              about creating a space that works for your people, clients and
+              business.
             </p>
           </div>
 
@@ -138,10 +145,15 @@ export default function WhyMangi() {
         >
           {points.map((pt, idx) => {
             const Icon = pt.icon;
+            const rotate = (idx % 2 === 0 ? -1 : 1) * (idx + 1) * 1.5;
             return (
               <div
                 key={idx}
-                className="w-[260px] sm:w-[290px] md:w-[310px] shrink-0 snap-start group bg-[#faf8f5] hover:bg-[#ffffff] rounded-xl p-5 border border-[#e8dfcf] hover:border-[#c5a059] shadow-sm hover:shadow-md transition-all duration-200"
+                className={`card-spill ${isInView ? "is-visible" : ""} w-[260px] sm:w-[290px] md:w-[310px] shrink-0 snap-start group bg-[#faf8f5] hover:bg-[#ffffff] rounded-xl p-5 border border-[#e8dfcf] hover:border-[#c5a059] shadow-sm hover:shadow-md transition-all duration-200`}
+                style={{
+                  transitionDelay: `${idx * 140}ms`,
+                  "--card-rotate": `${rotate}deg`,
+                }}
               >
                 {/* Top Row: Icon & Number */}
                 <div className="flex items-center justify-between mb-3">

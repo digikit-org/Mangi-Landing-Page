@@ -1,10 +1,15 @@
 import React, { useState, useRef, useEffect } from "react";
 import { ArrowRight, MapPin, ChevronLeft, ChevronRight } from "lucide-react";
 import { projectsList } from "../data/projectsData";
+import useInView from "../hooks/useInView";
 
 export default function OurWork({ onSelectProject, onOpenConsultation }) {
   const [activeFilter, setActiveFilter] = useState("All");
   const scrollRef = useRef(null);
+  const [sectionRef, isInView] = useInView({
+    threshold: 0.2,
+    triggerOnce: false,
+  });
   const [canScrollLeft, setCanScrollLeft] = useState(false);
   const [canScrollRight, setCanScrollRight] = useState(true);
 
@@ -55,7 +60,11 @@ export default function OurWork({ onSelectProject, onOpenConsultation }) {
       : projectsList.filter((p) => p.category === activeFilter);
 
   return (
-    <section id="projects" className="w-full py-12 sm:py-16 bg-[#ffffff]">
+    <section
+      ref={sectionRef}
+      id="projects"
+      className="w-full py-12 sm:py-16 bg-[#ffffff]"
+    >
       <div className="max-w-[1360px] mx-auto px-5 sm:px-8 md:px-12">
         {/* Section Header */}
         <div className="flex flex-col md:flex-row md:items-end justify-between mb-6 sm:mb-8 gap-4">
@@ -139,55 +148,62 @@ export default function OurWork({ onSelectProject, onOpenConsultation }) {
           ref={scrollRef}
           className="horizontal-scroller flex gap-5 pb-3 pt-1 snap-x snap-mandatory"
         >
-          {filteredProjects.map((project) => (
-            <div
-              key={project.id}
-              onClick={() => onSelectProject(project)}
-              className="w-[290px] sm:w-[330px] md:w-[360px] shrink-0 snap-start group bg-[#ffffff] rounded-xl overflow-hidden border border-[#eae3d5] shadow-sm hover:shadow-lg transition-all duration-300 flex flex-col cursor-pointer card-hover-lift"
-            >
-              {/* PURE PRISTINE HD PHOTO */}
-              <div className="relative aspect-[16/10] w-full overflow-hidden bg-[#e6dfd4]">
-                <img
-                  src={project.image}
-                  alt={project.title}
-                  loading="lazy"
-                  className="w-full h-full object-cover object-center transform transition-transform duration-700 ease-out group-hover:scale-105"
-                />
-              </div>
-
-              {/* Card Body */}
-              <div className="p-4 sm:p-5 flex-1 flex flex-col justify-between bg-white">
-                <div>
-                  {/* Category & Location Badges */}
-                  <div className="flex items-center justify-between text-xs mb-2.5">
-                    <span className="text-[10px] font-bold uppercase tracking-wider text-[#827a71] bg-[#faf8f5] px-2 py-0.5 rounded border border-[#e8dfcf]">
-                      {project.category}
-                    </span>
-                    <span className="flex items-center gap-1 text-[11px] text-[#78716c] font-medium">
-                      <MapPin className="w-3 h-3 text-[#a67c33]" />
-                      {project.location}
-                    </span>
-                  </div>
-
-                  <h3 className="font-sans font-bold text-base sm:text-[17px] text-[#1c1917] group-hover:text-brand-gold transition-colors leading-snug">
-                    {project.title}
-                  </h3>
-
-                  <p className="font-sans text-xs sm:text-[13px] text-[#615a52] mt-1.5 line-clamp-2 leading-relaxed">
-                    {project.description}
-                  </p>
+          {filteredProjects.map((project, index) => {
+            const rotate = (index % 2 === 0 ? -1 : 1) * (index + 1) * 1.2;
+            return (
+              <div
+                key={project.id}
+                onClick={() => onSelectProject(project)}
+                className={`card-spill ${isInView ? "is-visible" : ""} w-[290px] sm:w-[330px] md:w-[360px] shrink-0 snap-start group bg-[#ffffff] rounded-xl overflow-hidden border border-[#eae3d5] shadow-sm hover:shadow-lg transition-all duration-300 flex flex-col cursor-pointer card-hover-lift`}
+                style={{
+                  transitionDelay: `${index * 140}ms`,
+                  "--card-rotate": `${rotate}deg`,
+                }}
+              >
+                {/* PURE PRISTINE HD PHOTO */}
+                <div className="relative aspect-[16/10] w-full overflow-hidden bg-[#e6dfd4]">
+                  <img
+                    src={project.image}
+                    alt={project.title}
+                    loading="lazy"
+                    className="w-full h-full object-cover object-center transform transition-transform duration-700 ease-out group-hover:scale-105"
+                  />
                 </div>
 
-                <div className="mt-4 pt-2.5 border-t border-[#f2ede4] flex items-center justify-between text-xs font-semibold text-[#a67c33]">
-                  <span>{project.area} • Handed Over</span>
-                  <div className="flex items-center gap-1 group-hover:translate-x-1 transition-transform">
-                    <span>Explore Blueprint</span>
-                    <ArrowRight className="w-3.5 h-3.5" />
+                {/* Card Body */}
+                <div className="p-4 sm:p-5 flex-1 flex flex-col justify-between bg-white">
+                  <div>
+                    {/* Category & Location Badges */}
+                    <div className="flex items-center justify-between text-xs mb-2.5">
+                      <span className="text-[10px] font-bold uppercase tracking-wider text-[#827a71] bg-[#faf8f5] px-2 py-0.5 rounded border border-[#e8dfcf]">
+                        {project.category}
+                      </span>
+                      <span className="flex items-center gap-1 text-[11px] text-[#78716c] font-medium">
+                        <MapPin className="w-3 h-3 text-[#a67c33]" />
+                        {project.location}
+                      </span>
+                    </div>
+
+                    <h3 className="font-sans font-bold text-base sm:text-[17px] text-[#1c1917] group-hover:text-brand-gold transition-colors leading-snug">
+                      {project.title}
+                    </h3>
+
+                    <p className="font-sans text-xs sm:text-[13px] text-[#615a52] mt-1.5 line-clamp-2 leading-relaxed">
+                      {project.description}
+                    </p>
+                  </div>
+
+                  <div className="mt-4 pt-2.5 border-t border-[#f2ede4] flex items-center justify-between text-xs font-semibold text-[#a67c33]">
+                    <span>{project.area} • Handed Over</span>
+                    <div className="flex items-center gap-1 group-hover:translate-x-1 transition-transform">
+                      <span>Explore Blueprint</span>
+                      <ArrowRight className="w-3.5 h-3.5" />
+                    </div>
                   </div>
                 </div>
               </div>
-            </div>
-          ))}
+            );
+          })}
         </div>
       </div>
     </section>
