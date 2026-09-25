@@ -125,21 +125,28 @@ export default function Footer({ onOpenConsultation }) {
 
         {/* Bottom Sub-bar */}
         <div className="pt-8 flex flex-col sm:flex-row items-center justify-between text-xs text-[#736c64] gap-4">
-          <p className="text-white">
+          <p className="text-white/80">
             © {new Date().getFullYear()} Mangi Interiors. Commercial Interiors |
             Turnkey Execution. All rights reserved.
           </p>
-          <div className="flex items-center gap-6">
-            <a
-              href="https://mangiinteriors.in"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="hover:text-white transition-colors"
-            ></a>
+          <div className="flex items-center gap-5 text-white/90">
+            <span>
+              Digital Experience Crafted by{" "}
+              <a
+                href="https://www.digikit.in/"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="text-[#c5a059] hover:text-[#dfc28f] hover:underline font-semibold transition-colors"
+              >
+                Digikit
+              </a>
+            </span>
+
+            <span className="text-[#3a3530]">|</span>
 
             <button
               onClick={() => onOpenConsultation()}
-              className="hover:text-white transition-colors text-white"
+              className="hover:text-white transition-colors text-white/80"
             >
               Book a Consultation
             </button>
