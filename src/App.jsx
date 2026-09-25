@@ -9,6 +9,7 @@ import LeadSection from './components/LeadSection';
 import Footer from './components/Footer';
 import ConsultationModal from './components/ConsultationModal';
 import SpaceDetailModal from './components/SpaceDetailModal';
+import FloatingWhatsApp from './components/FloatingWhatsApp';
 
 export default function App() {
   const [isConsultationOpen, setIsConsultationOpen] = useState(false);
@@ -84,6 +85,9 @@ export default function App() {
         onClose={() => setSelectedSpace(null)}
         onBookSpace={(cat) => handleOpenConsultation(cat)}
       />
+
+      {/* Floating WhatsApp Action Button */}
+      <FloatingWhatsApp />
     </div>
   );
 }
