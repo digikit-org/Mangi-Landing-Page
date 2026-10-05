@@ -16,7 +16,7 @@ export default function FloatingWhatsApp() {
         <div className="w-6 h-6 rounded-full bg-white/25 flex items-center justify-center">
           <Phone className="w-3.5 h-3.5 text-white fill-current" />
         </div>
-        <span className="hidden sm:inline font-sans text-xs font-bold tracking-wide text-white drop-shadow-[0_1px_2px_rgba(0,0,0,0.2)]">
+        <span className="hidden sm:inline font-sans text-xs font-bold tracking-wide text-white drop-shadow-sm">
           Call Now
         </span>
       </a>

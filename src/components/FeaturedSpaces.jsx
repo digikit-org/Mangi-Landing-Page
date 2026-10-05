@@ -132,7 +132,7 @@ export default function FeaturedSpaces({ onSelectSpace }) {
                     }}
                     className="w-full h-full object-cover object-center transform transition-transform duration-700 ease-out group-hover:scale-108"
                   />
-                  <div className="absolute inset-0 bg-black/0 group-hover:bg-black/10 transition-colors duration-300"></div>
+                  <div className="absolute inset-0 bg-[#292524]/0 group-hover:bg-[#c5a059]/10 transition-colors duration-300"></div>
                 </div>
 
                 {/* Card Footer Bar */}

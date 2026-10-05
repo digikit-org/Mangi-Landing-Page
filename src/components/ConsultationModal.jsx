@@ -9,7 +9,7 @@ export default function ConsultationModal({ isOpen, onClose, initialCategory = '
     country: 'India',
     email: '',
     postalCode: '',
-    spaceType: 'Corporate Offices',
+    spaceType: 'Healthcare (Clinics, Hospitals, Labs)',
     area: '5,000 – 15,000 sq.ft.',
     timeline: 'Within 1–3 Months',
     message: '',
@@ -53,7 +53,7 @@ export default function ConsultationModal({ isOpen, onClose, initialCategory = '
         particleCount: 80,
         spread: 70,
         origin: { y: 0.6 },
-        colors: ['#c5a059', '#1c1917', '#e2c99a'],
+        colors: ['#c5a059', '#dfc28f', '#a67c33'],
       });
     }, 600);
   };
@@ -68,7 +68,7 @@ export default function ConsultationModal({ isOpen, onClose, initialCategory = '
       {/* Backdrop */}
       <div
         onClick={onClose}
-        className="absolute inset-0 bg-[#141210]/65 backdrop-blur-sm transition-opacity"
+        className="absolute inset-0 bg-[#2a241e]/55 backdrop-blur-sm transition-opacity"
       ></div>
 
       {/* Modal Card */}
@@ -216,13 +216,14 @@ export default function ConsultationModal({ isOpen, onClose, initialCategory = '
                   onChange={(e) => setFormData({ ...formData, spaceType: e.target.value })}
                   className="w-full px-3 py-2.5 bg-white border border-[#dcd3c3] rounded-lg text-sm focus:outline-none focus:ring-2 focus:ring-[#c5a059]"
                 >
-                  <option value="Corporate Offices">Corporate Offices</option>
+                  <option value="Healthcare (Clinics, Hospitals, Labs)">Healthcare (Clinics, Hospitals, Labs)</option>
+                  <option value="Hospitality (Hotels, Lounges, Dining)">Hospitality (Hotels, Lounges, Dining)</option>
+                  <option value="Workplaces & Corporate Offices">Workplaces & Corporate Offices</option>
+                  <option value="Retail & Showrooms">Retail & Showrooms</option>
                   <option value="Executive Workspace">Executive Workspace</option>
                   <option value="Meeting & Conference Spaces">Meeting & Conference Spaces</option>
                   <option value="Reception Areas">Reception Areas</option>
-                  <option value="Collaboration Spaces">Collaboration Spaces</option>
-                  <option value="Retail Space">Retail Space</option>
-                  <option value="Turnkey Interiors">Turnkey Interiors (Design + Build)</option>
+                  <option value="Turnkey Interiors">Turnkey Commercial Fitout</option>
                 </select>
               </div>
 

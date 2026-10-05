@@ -25,7 +25,7 @@ export default function SpaceDetailModal({ space, onClose, onBookSpace }) {
       {/* Backdrop */}
       <div
         onClick={onClose}
-        className="absolute inset-0 bg-[#141210]/65 backdrop-blur-sm transition-opacity"
+        className="absolute inset-0 bg-[#2a241e]/55 backdrop-blur-sm transition-opacity"
       ></div>
 
       {/* Modal Container */}
