@@ -1,5 +1,15 @@
 export const projectsList = [
   {
+    id: 'health-1',
+    category: 'Healthcare',
+    title: 'Specialty Healthcare & Clinical Suites',
+    location: 'Indiranagar, Bangalore',
+    area: '14,000 sq.ft.',
+    image: '/images/healthcare_hd.jpg',
+    description: 'Specialized healthcare facility featuring sterile patient consultation suites, acoustic diagnostic chambers, anti-microbial wall cladding, and calming biophilic lounge aesthetics.',
+    highlights: ['NABH Compliance Ready', 'Medical-Grade Antibacterial Finishes', 'Acoustic Soundproofing STC 55']
+  },
+  {
     id: 'corp-1',
     category: 'Corporate Office',
     title: 'Modern Corporate Office HQ',

@@ -16,28 +16,18 @@ export default function Navbar({ onOpenConsultation }) {
 
   return (
     <header
-      className={`fixed top-0 left-0 right-0 z-40 transition-all duration-300 ${
-        scrolled
-          ? 'bg-[#faf8f5]/95 backdrop-blur-md shadow-[0_2px_15px_-3px_rgba(0,0,0,0.06)] py-2 sm:py-2.5'
-          : 'bg-gradient-to-b from-black/50 via-black/20 to-transparent py-2.5 sm:py-3'
-      }`}
+      className="fixed top-0 left-0 right-0 z-40 transition-all duration-300 bg-[#faf8f5]/95 backdrop-blur-md border-b border-[#e8dfcf] shadow-[0_2px_15px_-3px_rgba(180,150,110,0.08)] py-2.5 sm:py-3"
     >
       <div className="max-w-[1280px] mx-auto px-4 sm:px-6 md:px-8 flex items-center justify-between">
         
-        {/* Brand Logo: MANGI INTERIORS (Compact) */}
+        {/* Brand Logo: MANGI INTERIORS (Original Logo) */}
         <a href="#" className="flex items-center">
-          <Logo light={!scrolled} size="small" />
+          <Logo light={false} size="small" />
         </a>
 
         {/* Desktop Nav: Commercial Interiors | Projects | Services | Book a consultation */}
         <div className="hidden lg:flex items-center gap-6">
-          <nav
-            className={`flex items-center space-x-3.5 text-xs sm:text-[13px] font-sans font-semibold tracking-wide transition-colors duration-300 ${
-              scrolled
-                ? 'text-[#2c2825]'
-                : 'text-white drop-shadow-[0_1px_3px_rgba(0,0,0,0.6)]'
-            }`}
-          >
+          <nav className="flex items-center space-x-3.5 text-xs sm:text-[13px] font-sans font-semibold tracking-wide text-[#2c2825]">
             <a
               href="#why-mangi"
               className="hover:text-brand-gold transition-colors duration-200"
@@ -45,7 +35,7 @@ export default function Navbar({ onOpenConsultation }) {
               Commercial Interiors
             </a>
 
-            <span className={scrolled ? 'text-[#c5a059]' : 'text-[#f2d79c]'}>|</span>
+            <span className="text-[#c5a059]">|</span>
 
             <a
               href="#projects"
@@ -54,7 +44,7 @@ export default function Navbar({ onOpenConsultation }) {
               Projects
             </a>
 
-            <span className={scrolled ? 'text-[#c5a059]' : 'text-[#f2d79c]'}>|</span>
+            <span className="text-[#c5a059]">|</span>
 
             <a
               href="#services"
@@ -63,7 +53,7 @@ export default function Navbar({ onOpenConsultation }) {
               Services
             </a>
 
-            <span className={scrolled ? 'text-[#c5a059]' : 'text-[#f2d79c]'}>|</span>
+            <span className="text-[#c5a059]">|</span>
 
             <a
               href="#consultation"
@@ -97,9 +87,7 @@ export default function Navbar({ onOpenConsultation }) {
           </button>
           <button
             onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
-            className={`p-1 rounded-lg transition-colors ${
-              scrolled ? 'text-[#1c1917]' : 'text-white'
-            }`}
+            className="p-1 rounded-lg transition-colors text-[#2c2825]"
             aria-label="Toggle menu"
           >
             {mobileMenuOpen ? <X className="w-5 h-5" /> : <Menu className="w-5 h-5" />}
@@ -143,7 +131,7 @@ export default function Navbar({ onOpenConsultation }) {
                 setMobileMenuOpen(false);
                 onOpenConsultation('Mobile Menu Link');
               }}
-              className="py-1 text-[#a67c33] hover:text-[#1c1917] transition-colors"
+              className="py-1 text-[#a67c33] hover:text-[#2c2825] transition-colors"
             >
               Book a consultation
             </a>

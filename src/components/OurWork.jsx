@@ -5,6 +5,7 @@ import useInView from "../hooks/useInView";
 
 export default function OurWork({ onSelectProject, onOpenConsultation }) {
   const [activeFilter, setActiveFilter] = useState("All");
+  const [isPaused, setIsPaused] = useState(false);
   const scrollRef = useRef(null);
   const [sectionRef, isInView] = useInView({
     threshold: 0.2,
@@ -34,6 +35,27 @@ export default function OurWork({ onSelectProject, onOpenConsultation }) {
     }
   }, [activeFilter]);
 
+  // Project photographs move automatically
+  useEffect(() => {
+    if (isPaused) return;
+
+    const interval = setInterval(() => {
+      if (scrollRef.current) {
+        const { scrollLeft, scrollWidth, clientWidth } = scrollRef.current;
+        const cardWidth = 360;
+
+        // Loop smoothly when reaching end
+        if (scrollLeft + clientWidth >= scrollWidth - 25) {
+          scrollRef.current.scrollTo({ left: 0, behavior: "smooth" });
+        } else {
+          scrollRef.current.scrollBy({ left: cardWidth, behavior: "smooth" });
+        }
+      }
+    }, 3200);
+
+    return () => clearInterval(interval);
+  }, [isPaused, activeFilter]);
+
   const scroll = (direction) => {
     if (scrollRef.current) {
       const cardWidth = 360;
@@ -46,6 +68,7 @@ export default function OurWork({ onSelectProject, onOpenConsultation }) {
 
   const categories = [
     "All",
+    "Healthcare",
     "Corporate Office",
     "Executive Workspace",
     "Meeting Spaces",
@@ -134,7 +157,7 @@ export default function OurWork({ onSelectProject, onOpenConsultation }) {
               onClick={() => setActiveFilter(cat)}
               className={`px-3.5 py-1.5 rounded-full text-xs font-semibold tracking-wide transition-all duration-200 whitespace-nowrap ${
                 activeFilter === cat
-                  ? "bg-[#1c1917] text-white shadow-sm"
+                  ? "bg-[#c5a059] text-white shadow-sm font-bold"
                   : "bg-[#faf8f5] text-[#5e574f] border border-[#e8dfcf] hover:border-[#c5a059] hover:text-[#1c1917]"
               }`}
             >
@@ -143,9 +166,13 @@ export default function OurWork({ onSelectProject, onOpenConsultation }) {
           ))}
         </div>
 
-        {/* Horizontal Projects Scroller */}
+        {/* Horizontal Projects Scroller (Moves Automatically) */}
         <div
           ref={scrollRef}
+          onMouseEnter={() => setIsPaused(true)}
+          onMouseLeave={() => setIsPaused(false)}
+          onTouchStart={() => setIsPaused(true)}
+          onTouchEnd={() => setIsPaused(false)}
           className="horizontal-scroller flex gap-5 pb-3 pt-1 snap-x snap-mandatory"
         >
           {filteredProjects.map((project, index) => {

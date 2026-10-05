@@ -17,7 +17,7 @@ export default function LeadSection() {
     company: "",
     location: "",
     approxArea: "5,000 – 15,000 sq.ft.",
-    projectType: "Corporate Office",
+    projectType: "Healthcare (Clinics, Hospitals, Labs)",
     message: "",
   });
 
@@ -34,7 +34,7 @@ export default function LeadSection() {
         particleCount: 80,
         spread: 70,
         origin: { y: 0.6 },
-        colors: ["#c5a059", "#1c1917", "#e2c99a"],
+        colors: ["#c5a059", "#dfc28f", "#a67c33"],
       });
     }, 600);
   };
@@ -275,20 +275,25 @@ export default function LeadSection() {
                           }
                           className="w-full px-3 py-2.5 bg-white border border-[#dcd3c3] rounded-lg text-sm focus:outline-none focus:ring-2 focus:ring-[#c5a059]"
                         >
-                          <option value="Corporate Office">
-                            Corporate Office
+                          <option value="Healthcare (Clinics, Hospitals, Labs)">
+                            Healthcare (Clinics, Hospitals, Labs)
+                          </option>
+                          <option value="Hospitality (Hotels, Lounges, Dining)">
+                            Hospitality (Hotels, Lounges, Dining)
+                          </option>
+                          <option value="Workplaces & Corporate Offices">
+                            Workplaces & Corporate Offices
+                          </option>
+                          <option value="Retail & Showrooms">
+                            Retail & Showrooms
                           </option>
                           <option value="Executive Workspace">
                             Executive Workspace
                           </option>
-                          <option value="Meeting & Conference Spaces">
+                          <option value="Meeting Spaces">
                             Meeting Spaces
                           </option>
                           <option value="Reception Area">Reception Area</option>
-                          <option value="Collaboration Zone">
-                            Collaboration Zone
-                          </option>
-                          <option value="Retail Space">Retail space</option>
                           <option value="Turnkey Commercial Fitout">
                             Full Turnkey Fitout
                           </option>
