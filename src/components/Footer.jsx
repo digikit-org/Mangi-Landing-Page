@@ -4,9 +4,9 @@ import { Phone, Mail, ArrowRight } from "lucide-react";
 import WhatsAppIcon from "./WhatsAppIcon";
 
 export default function Footer({ onOpenConsultation }) {
-  const phone = "918088196750";
-  const displayPhone = "+91 80881 96750";
-  const email = "bapanmistry@mangiinteriors.com";
+  const phone = "7742036962";
+  const displayPhone = "+91 7742036962";
+  const email = "info@mangiinteriors.com";
 
   return (
     <footer className="w-full bg-[#f5f0e6] text-[#2c2825] pt-16 sm:pt-20 pb-10 border-t border-[#e8dfcf]">

@@ -93,23 +93,23 @@ export default function LeadSection() {
             {/* Direct Contact Links */}
             <div className="flex flex-wrap items-center gap-6 pt-2 text-xs sm:text-sm">
               <a
-                href="tel:+918088196750"
+                href="tel:+917742036962"
                 className="flex items-center gap-2 text-[#1c1917] font-semibold hover:text-[#a67c33] transition-colors"
               >
                 <div className="w-8 h-8 rounded-full bg-[#f4ece0] text-[#a67c33] flex items-center justify-center">
                   <Phone className="w-4 h-4" />
                 </div>
-                <span>+91 80881 96750</span>
+                <span>+91 7742036962</span>
               </a>
 
               <a
-                href="mailto:Bapanmistry@mangiinteriors.com"
+                href="mailto:info@mangiinteriors.com"
                 className="flex items-center gap-2 text-[#1c1917] font-semibold hover:text-[#a67c33] transition-colors"
               >
                 <div className="w-8 h-8 rounded-full bg-[#f4ece0] text-[#a67c33] flex items-center justify-center">
                   <Mail className="w-4 h-4" />
                 </div>
-                <span>Bapanmistry@mangiinteriors.com</span>
+                <span>info@mangiinteriors.com</span>
               </a>
             </div>
           </div>
@@ -290,9 +290,7 @@ export default function LeadSection() {
                           <option value="Executive Workspace">
                             Executive Workspace
                           </option>
-                          <option value="Meeting Spaces">
-                            Meeting Spaces
-                          </option>
+                          <option value="Meeting Spaces">Meeting Spaces</option>
                           <option value="Reception Area">Reception Area</option>
                           <option value="Turnkey Commercial Fitout">
                             Full Turnkey Fitout
