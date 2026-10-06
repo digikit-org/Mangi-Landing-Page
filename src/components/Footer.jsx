@@ -61,8 +61,7 @@ export default function Footer({ onOpenConsultation }) {
                   Design. Build. Inspire.
                 </span>
                 <p className="text-xs sm:text-sm text-[#524b43] mt-1.5 leading-relaxed">
-                  Healthcare | Hospitality | Workplaces | Retail • Turnkey
-                  Execution
+                  Healthcare | Hospitality | Workplaces | Retail
                 </p>
               </div>
             </div>

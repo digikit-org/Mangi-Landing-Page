@@ -83,11 +83,11 @@ export default function Hero({ onOpenConsultation }) {
   };
 
   const sectors = [
+    { label: "Healthcare", icon: Stethoscope, featured: true },
     { label: "Offices", icon: Building2, featured: false },
     { label: "Retail", icon: Store, featured: false },
     { label: "Hospitality", icon: Hotel, featured: false },
     { label: "Commercial Spaces", icon: Briefcase, featured: false },
-    { label: "Healthcare", icon: Stethoscope, featured: true },
   ];
 
   return (
@@ -123,7 +123,6 @@ export default function Hero({ onOpenConsultation }) {
       {/* Main Hero Container: Left Content & Right Booking Form Side-by-Side (Comfortably below header) */}
       <div className="relative z-10 max-w-[1360px] mx-auto px-4 sm:px-8 md:px-12 w-full flex-1 flex flex-col justify-center py-2 sm:py-4">
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-10 items-center">
-          
           {/* Left Column: Headlines, Content & Sectors matching 2nd image */}
           <div className="lg:col-span-7 flex flex-col justify-center">
             {/* Tagline Badge */}
@@ -141,7 +140,9 @@ export default function Hero({ onOpenConsultation }) {
               style={{ transitionDelay: "220ms" }}
             >
               Commercial Spaces, <br />
-              <span className="italic font-semibold text-[#a67c33]">Designed to Perform.</span>
+              <span className="italic font-semibold text-[#a67c33]">
+                Designed to Perform.
+              </span>
             </h1>
 
             {/* Bronze Accent Rule */}
@@ -152,10 +153,11 @@ export default function Hero({ onOpenConsultation }) {
 
             {/* Subheading Copy exactly matching 2nd image */}
             <p
-              className={`hero-from-image ${isLoaded ? "is-in" : ""} font-sans text-[#423c36] text-xs sm:text-sm md:text-[15px] lg:text-base leading-snug sm:leading-relaxed max-w-xl mb-4 font-normal`}
+              className={`hero-from-image ${isLoaded ? "is-in" : ""} font-sans text-[#1c1917] text-xs sm:text-sm md:text-[15px] lg:text-base leading-snug sm:leading-relaxed max-w-xl mb-4 font-normal`}
               style={{ transitionDelay: "420ms" }}
             >
-              We create functional, premium commercial interiors that help businesses{" "}
+              We create functional, premium commercial interiors that help
+              businesses{" "}
               <span className="font-semibold text-[#1c1917]">
                 work better, look better, and grow better.
               </span>
@@ -224,9 +226,15 @@ export default function Hero({ onOpenConsultation }) {
                     Consultation Booked!
                   </h3>
                   <p className="font-sans text-xs sm:text-sm text-[#5a534c] max-w-xs mx-auto mb-5 leading-relaxed">
-                    Thank you, <strong className="text-[#1c1917]">{formData.name}</strong>. Our senior architect for{" "}
-                    <strong className="text-[#a67c33]">{formData.service}</strong> will contact you at{" "}
-                    <strong className="text-[#1c1917]">{formData.phone}</strong> within 24 hours.
+                    Thank you,{" "}
+                    <strong className="text-[#1c1917]">{formData.name}</strong>.
+                    Our senior architect for{" "}
+                    <strong className="text-[#a67c33]">
+                      {formData.service}
+                    </strong>{" "}
+                    will contact you at{" "}
+                    <strong className="text-[#1c1917]">{formData.phone}</strong>{" "}
+                    within 24 hours.
                   </p>
                   <button
                     onClick={() => setIsSubmitted(false)}
@@ -250,7 +258,8 @@ export default function Hero({ onOpenConsultation }) {
                       Book a Free Consultation
                     </h3>
                     <p className="font-sans text-xs text-[#6e665d] mt-1">
-                      Share your requirement — our senior architect will connect within 24 hours.
+                      Share your requirement — our senior architect will connect
+                      within 24 hours.
                     </p>
                   </div>
 
@@ -264,7 +273,9 @@ export default function Hero({ onOpenConsultation }) {
                         required
                         placeholder="Your Full Name"
                         value={formData.name}
-                        onChange={(e) => setFormData({ ...formData, name: e.target.value })}
+                        onChange={(e) =>
+                          setFormData({ ...formData, name: e.target.value })
+                        }
                         className="w-full px-3 py-2 bg-white border border-[#dcd3c3] rounded-lg text-xs sm:text-sm focus:outline-none focus:ring-2 focus:ring-[#c5a059] transition-all text-[#1c1917]"
                       />
                     </div>
@@ -278,7 +289,9 @@ export default function Hero({ onOpenConsultation }) {
                         required
                         placeholder="+91 / WhatsApp Number"
                         value={formData.phone}
-                        onChange={(e) => setFormData({ ...formData, phone: e.target.value })}
+                        onChange={(e) =>
+                          setFormData({ ...formData, phone: e.target.value })
+                        }
                         className="w-full px-3 py-2 bg-white border border-[#dcd3c3] rounded-lg text-xs sm:text-sm focus:outline-none focus:ring-2 focus:ring-[#c5a059] transition-all text-[#1c1917]"
                       />
                     </div>
@@ -290,13 +303,26 @@ export default function Hero({ onOpenConsultation }) {
                         </label>
                         <select
                           value={formData.service}
-                          onChange={(e) => setFormData({ ...formData, service: e.target.value })}
+                          onChange={(e) =>
+                            setFormData({
+                              ...formData,
+                              service: e.target.value,
+                            })
+                          }
                           className="w-full px-2.5 py-2 bg-white border border-[#dcd3c3] rounded-lg text-xs focus:outline-none focus:ring-2 focus:ring-[#c5a059] text-[#1c1917]"
                         >
-                          <option value="Healthcare">Healthcare (Clinics/Hospitals)</option>
-                          <option value="Hospitality">Hospitality (Hotels/Lounges)</option>
-                          <option value="Workplaces">Workplaces (Offices/Corporate)</option>
-                          <option value="Retail">Retail (Stores/Showrooms)</option>
+                          <option value="Healthcare">
+                            Healthcare (Clinics/Hospitals)
+                          </option>
+                          <option value="Hospitality">
+                            Hospitality (Hotels/Lounges)
+                          </option>
+                          <option value="Workplaces">
+                            Workplaces (Offices/Corporate)
+                          </option>
+                          <option value="Retail">
+                            Retail (Stores/Showrooms)
+                          </option>
                         </select>
                       </div>
 
@@ -306,12 +332,20 @@ export default function Hero({ onOpenConsultation }) {
                         </label>
                         <select
                           value={formData.area}
-                          onChange={(e) => setFormData({ ...formData, area: e.target.value })}
+                          onChange={(e) =>
+                            setFormData({ ...formData, area: e.target.value })
+                          }
                           className="w-full px-2.5 py-2 bg-white border border-[#dcd3c3] rounded-lg text-xs focus:outline-none focus:ring-2 focus:ring-[#c5a059] text-[#1c1917]"
                         >
-                          <option value="Under 3,000 sq.ft.">&lt; 3,000 sq.ft.</option>
-                          <option value="3,000 – 10,000 sq.ft.">3,000 – 10,000 sq.ft.</option>
-                          <option value="10,000 – 25,000 sq.ft.">10,000 – 25,000 sq.ft.</option>
+                          <option value="Under 3,000 sq.ft.">
+                            &lt; 3,000 sq.ft.
+                          </option>
+                          <option value="3,000 – 10,000 sq.ft.">
+                            3,000 – 10,000 sq.ft.
+                          </option>
+                          <option value="10,000 – 25,000 sq.ft.">
+                            10,000 – 25,000 sq.ft.
+                          </option>
                           <option value="25,000+ sq.ft.">25,000+ sq.ft.</option>
                         </select>
                       </div>
@@ -322,7 +356,11 @@ export default function Hero({ onOpenConsultation }) {
                       disabled={isSubmitting}
                       className="gold-gradient-btn w-full mt-2 py-2.5 px-4 rounded-lg text-xs sm:text-sm font-semibold text-white tracking-wide flex items-center justify-center gap-2 shadow-md transition-all cursor-pointer"
                     >
-                      <span>{isSubmitting ? "Submitting..." : "Book Free Consultation"}</span>
+                      <span>
+                        {isSubmitting
+                          ? "Submitting..."
+                          : "Book Free Consultation"}
+                      </span>
                       <ArrowRight className="w-3.5 h-3.5 text-white" />
                     </button>
 
@@ -338,7 +376,6 @@ export default function Hero({ onOpenConsultation }) {
               )}
             </div>
           </div>
-
         </div>
       </div>
 
