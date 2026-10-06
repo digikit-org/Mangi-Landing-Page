@@ -1,6 +1,6 @@
-import React, { useState, useEffect } from 'react';
-import Logo from './Logo';
-import { ArrowRight, Menu, X } from 'lucide-react';
+import React, { useState, useEffect } from "react";
+import Logo from "./Logo";
+import { ArrowRight, Menu, X } from "lucide-react";
 
 export default function Navbar({ onOpenConsultation }) {
   const [scrolled, setScrolled] = useState(false);
@@ -10,16 +10,13 @@ export default function Navbar({ onOpenConsultation }) {
     const handleScroll = () => {
       setScrolled(window.scrollY > 20);
     };
-    window.addEventListener('scroll', handleScroll);
-    return () => window.removeEventListener('scroll', handleScroll);
+    window.addEventListener("scroll", handleScroll);
+    return () => window.removeEventListener("scroll", handleScroll);
   }, []);
 
   return (
-    <header
-      className="fixed top-0 left-0 right-0 z-40 transition-all duration-300 bg-[#faf8f5]/95 backdrop-blur-md border-b border-[#e8dfcf] shadow-[0_2px_15px_-3px_rgba(180,150,110,0.08)] py-2.5 sm:py-3"
-    >
+    <header className="fixed top-0 left-0 right-0 z-40 transition-all duration-300 bg-[#faf8f5]/95 backdrop-blur-md border-b border-[#e8dfcf] shadow-[0_2px_15px_-3px_rgba(180,150,110,0.08)] py-2.5 sm:py-3">
       <div className="max-w-[1280px] mx-auto px-4 sm:px-6 md:px-8 flex items-center justify-between">
-        
         {/* Brand Logo: MANGI INTERIORS (Original Logo) */}
         <a href="#" className="flex items-center">
           <Logo light={false} size="small" />
@@ -59,7 +56,7 @@ export default function Navbar({ onOpenConsultation }) {
               href="#consultation"
               onClick={(e) => {
                 e.preventDefault();
-                onOpenConsultation('Navbar Link');
+                onOpenConsultation("Navbar Link");
               }}
               className="hover:text-brand-gold transition-colors duration-200"
             >
@@ -69,7 +66,7 @@ export default function Navbar({ onOpenConsultation }) {
 
           {/* Button: [ Get a Free Consultation → ] */}
           <button
-            onClick={() => onOpenConsultation('Navbar Button')}
+            onClick={() => onOpenConsultation("Navbar Button")}
             className="gold-gradient-btn inline-flex items-center gap-1.5 px-4 py-2 text-xs font-semibold tracking-wide text-white rounded shadow-md transition-all duration-200"
           >
             <span>Get a Free Consultation</span>
@@ -80,7 +77,7 @@ export default function Navbar({ onOpenConsultation }) {
         {/* Mobile View Toggle */}
         <div className="flex items-center gap-2.5 lg:hidden">
           <button
-            onClick={() => onOpenConsultation('Mobile Nav CTA')}
+            onClick={() => onOpenConsultation("Mobile Nav CTA")}
             className="gold-gradient-btn px-2.5 py-1.5 text-[11px] font-semibold text-white rounded shadow-sm"
           >
             Consultation →
@@ -90,10 +87,13 @@ export default function Navbar({ onOpenConsultation }) {
             className="p-1 rounded-lg transition-colors text-[#2c2825]"
             aria-label="Toggle menu"
           >
-            {mobileMenuOpen ? <X className="w-5 h-5" /> : <Menu className="w-5 h-5" />}
+            {mobileMenuOpen ? (
+              <X className="w-5 h-5" />
+            ) : (
+              <Menu className="w-5 h-5" />
+            )}
           </button>
         </div>
-
       </div>
 
       {/* Mobile Menu Dropdown */}
@@ -129,7 +129,7 @@ export default function Navbar({ onOpenConsultation }) {
               onClick={(e) => {
                 e.preventDefault();
                 setMobileMenuOpen(false);
-                onOpenConsultation('Mobile Menu Link');
+                onOpenConsultation("Mobile Menu Link");
               }}
               className="py-1 text-[#a67c33] hover:text-[#2c2825] transition-colors"
             >
