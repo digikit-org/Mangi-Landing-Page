@@ -98,7 +98,7 @@ export default function Hero({ onOpenConsultation }) {
         <div
           className="md:hidden absolute inset-0 w-full h-full bg-cover bg-bottom opacity-20"
           style={{
-            backgroundImage: `url('/images/hero_mobile.png')`,
+            backgroundImage: `url('/images/banner-mob.png')`,
             backgroundColor: "#faf8f5",
           }}
         >
@@ -109,7 +109,7 @@ export default function Hero({ onOpenConsultation }) {
         <div
           className="hidden md:block absolute inset-0 w-full h-full bg-cover sm:bg-[center_right] transition-all duration-700 opacity-60 lg:opacity-85"
           style={{
-            backgroundImage: `url('/images/Hero.png')`,
+            backgroundImage: `url('/images/banner-desk.png')`,
             backgroundColor: "#faf8f5",
           }}
         >
