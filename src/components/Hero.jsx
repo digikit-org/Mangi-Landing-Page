@@ -22,16 +22,6 @@ export default function Hero({ onOpenConsultation }) {
   });
   const [isLoaded, setIsLoaded] = useState(false);
 
-  // First page booking form state
-  const [formData, setFormData] = useState({
-    name: "",
-    phone: "",
-    service: "Healthcare",
-    area: "3,000 – 10,000 sq.ft.",
-  });
-  const [isSubmitted, setIsSubmitted] = useState(false);
-  const [isSubmitting, setIsSubmitting] = useState(false);
-
   useEffect(() => {
     const revealTimer = window.setTimeout(() => setIsLoaded(true), 80);
     return () => window.clearTimeout(revealTimer);
@@ -66,21 +56,6 @@ export default function Hero({ onOpenConsultation }) {
     const animFrame = window.requestAnimationFrame(step);
     return () => window.cancelAnimationFrame(animFrame);
   }, []);
-
-  const handleFormSubmit = (e) => {
-    e.preventDefault();
-    setIsSubmitting(true);
-    setTimeout(() => {
-      setIsSubmitting(false);
-      setIsSubmitted(true);
-      confetti({
-        particleCount: 70,
-        spread: 60,
-        origin: { y: 0.6 },
-        colors: ["#c5a059", "#dfc28f", "#a67c33"],
-      });
-    }, 500);
-  };
 
   const sectors = [
     { label: "Healthcare", icon: Stethoscope, featured: true },
@@ -217,163 +192,119 @@ export default function Hero({ onOpenConsultation }) {
               {/* Top Accent Strip */}
               <div className="absolute top-0 inset-x-0 h-1.5 bg-gradient-to-r from-[#dfc28f] via-[#c5a059] to-[#ad8940] rounded-t-2xl"></div>
 
-              {isSubmitted ? (
-                <div className="py-8 text-center flex flex-col items-center">
-                  <div className="w-14 h-14 rounded-full bg-[#f4ece0] text-[#a67c33] flex items-center justify-center mb-3">
-                    <CheckCircle2 className="w-8 h-8" />
+              <div>
+                <div className="mb-4">
+                  <div className="flex items-center gap-2 mb-1">
+                    <span className="text-[10px] font-sans font-bold tracking-[0.2em] text-[#a67c33] uppercase">
+                      Quick Booking
+                    </span>
+                    <span className="text-[9px] px-1.5 py-0.5 rounded bg-[#f0e7d8] text-[#8a6320] font-semibold">
+                      Free Consultation
+                    </span>
                   </div>
-                  <h3 className="font-display text-2xl font-semibold text-[#1c1917] mb-1.5">
-                    Consultation Booked!
+                  <h3 className="font-display text-2xl sm:text-[26px] font-semibold text-[#1c1917] leading-tight">
+                    Book a Free Consultation
                   </h3>
-                  <p className="font-sans text-xs sm:text-sm text-[#5a534c] max-w-xs mx-auto mb-5 leading-relaxed">
-                    Thank you,{" "}
-                    <strong className="text-[#1c1917]">{formData.name}</strong>.
-                    Our senior architect for{" "}
-                    <strong className="text-[#a67c33]">
-                      {formData.service}
-                    </strong>{" "}
-                    will contact you at{" "}
-                    <strong className="text-[#1c1917]">{formData.phone}</strong>{" "}
+                  <p className="font-sans text-xs text-[#6e665d] mt-1">
+                    Share your requirement — our senior architect will connect
                     within 24 hours.
                   </p>
-                  <button
-                    onClick={() => setIsSubmitted(false)}
-                    className="gold-gradient-btn px-5 py-2 rounded text-xs font-semibold text-white shadow-sm"
-                  >
-                    Book Another Space
-                  </button>
                 </div>
-              ) : (
-                <div>
-                  <div className="mb-4">
-                    <div className="flex items-center gap-2 mb-1">
-                      <span className="text-[10px] font-sans font-bold tracking-[0.2em] text-[#a67c33] uppercase">
-                        Quick Booking
-                      </span>
-                      <span className="text-[9px] px-1.5 py-0.5 rounded bg-[#f0e7d8] text-[#8a6320] font-semibold">
-                        Free Consultation
-                      </span>
-                    </div>
-                    <h3 className="font-display text-2xl sm:text-[26px] font-semibold text-[#1c1917] leading-tight">
-                      Book a Free Consultation
-                    </h3>
-                    <p className="font-sans text-xs text-[#6e665d] mt-1">
-                      Share your requirement — our senior architect will connect
-                      within 24 hours.
-                    </p>
+
+                <form
+                  action={"https://mail.digikit.in/forms/mangi/send.php"}
+                  method="POST"
+                  className="space-y-3"
+                >
+                  <div>
+                    <label className="block text-[11px] font-semibold text-[#423c36] uppercase tracking-wider mb-1">
+                      Full Name *
+                    </label>
+                    <input
+                      name="name"
+                      type="text"
+                      required
+                      placeholder="Your Full Name"
+                      className="w-full px-3 py-2 bg-white border border-[#dcd3c3] rounded-lg text-xs sm:text-sm focus:outline-none focus:ring-2 focus:ring-[#c5a059] transition-all text-[#1c1917]"
+                    />
                   </div>
 
-                  <form onSubmit={handleFormSubmit} className="space-y-3">
+                  <div>
+                    <label className="block text-[11px] font-semibold text-[#423c36] uppercase tracking-wider mb-1">
+                      Phone / WhatsApp *
+                    </label>
+                    <input
+                      name="phone"
+                      type="tel"
+                      required
+                      placeholder="+91 / WhatsApp Number"
+                      className="w-full px-3 py-2 bg-white border border-[#dcd3c3] rounded-lg text-xs sm:text-sm focus:outline-none focus:ring-2 focus:ring-[#c5a059] transition-all text-[#1c1917]"
+                    />
+                  </div>
+
+                  <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
                     <div>
                       <label className="block text-[11px] font-semibold text-[#423c36] uppercase tracking-wider mb-1">
-                        Full Name *
+                        Service Required *
                       </label>
-                      <input
-                        type="text"
-                        required
-                        placeholder="Your Full Name"
-                        value={formData.name}
-                        onChange={(e) =>
-                          setFormData({ ...formData, name: e.target.value })
-                        }
-                        className="w-full px-3 py-2 bg-white border border-[#dcd3c3] rounded-lg text-xs sm:text-sm focus:outline-none focus:ring-2 focus:ring-[#c5a059] transition-all text-[#1c1917]"
-                      />
+                      <select
+                        name="service"
+                        className="w-full px-2.5 py-2 bg-white border border-[#dcd3c3] rounded-lg text-xs focus:outline-none focus:ring-2 focus:ring-[#c5a059] text-[#1c1917]"
+                      >
+                        <option value="Healthcare">
+                          Healthcare (Clinics/Hospitals)
+                        </option>
+                        <option value="Hospitality">
+                          Hospitality (Hotels/Lounges)
+                        </option>
+                        <option value="Workplaces">
+                          Workplaces (Offices/Corporate)
+                        </option>
+                        <option value="Retail">
+                          Retail (Stores/Showrooms)
+                        </option>
+                      </select>
                     </div>
 
                     <div>
                       <label className="block text-[11px] font-semibold text-[#423c36] uppercase tracking-wider mb-1">
-                        Phone / WhatsApp *
+                        Approx. Area
                       </label>
-                      <input
-                        type="tel"
-                        required
-                        placeholder="+91 / WhatsApp Number"
-                        value={formData.phone}
-                        onChange={(e) =>
-                          setFormData({ ...formData, phone: e.target.value })
-                        }
-                        className="w-full px-3 py-2 bg-white border border-[#dcd3c3] rounded-lg text-xs sm:text-sm focus:outline-none focus:ring-2 focus:ring-[#c5a059] transition-all text-[#1c1917]"
-                      />
+                      <select
+                        name="area"
+                        className="w-full px-2.5 py-2 bg-white border border-[#dcd3c3] rounded-lg text-xs focus:outline-none focus:ring-2 focus:ring-[#c5a059] text-[#1c1917]"
+                      >
+                        <option value="Under 3,000 sq.ft.">
+                          &lt; 3,000 sq.ft.
+                        </option>
+                        <option value="3,000 – 10,000 sq.ft.">
+                          3,000 – 10,000 sq.ft.
+                        </option>
+                        <option value="10,000 – 25,000 sq.ft.">
+                          10,000 – 25,000 sq.ft.
+                        </option>
+                        <option value="25,000+ sq.ft.">25,000+ sq.ft.</option>
+                      </select>
                     </div>
+                  </div>
 
-                    <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
-                      <div>
-                        <label className="block text-[11px] font-semibold text-[#423c36] uppercase tracking-wider mb-1">
-                          Service Required *
-                        </label>
-                        <select
-                          value={formData.service}
-                          onChange={(e) =>
-                            setFormData({
-                              ...formData,
-                              service: e.target.value,
-                            })
-                          }
-                          className="w-full px-2.5 py-2 bg-white border border-[#dcd3c3] rounded-lg text-xs focus:outline-none focus:ring-2 focus:ring-[#c5a059] text-[#1c1917]"
-                        >
-                          <option value="Healthcare">
-                            Healthcare (Clinics/Hospitals)
-                          </option>
-                          <option value="Hospitality">
-                            Hospitality (Hotels/Lounges)
-                          </option>
-                          <option value="Workplaces">
-                            Workplaces (Offices/Corporate)
-                          </option>
-                          <option value="Retail">
-                            Retail (Stores/Showrooms)
-                          </option>
-                        </select>
-                      </div>
+                  <button
+                    type="submit"
+                    className="gold-gradient-btn w-full mt-2 py-2.5 px-4 rounded-lg text-xs sm:text-sm font-semibold text-white tracking-wide flex items-center justify-center gap-2 shadow-md transition-all cursor-pointer"
+                  >
+                    Book Free Consultation
+                    <ArrowRight className="w-3.5 h-3.5 text-white" />
+                  </button>
 
-                      <div>
-                        <label className="block text-[11px] font-semibold text-[#423c36] uppercase tracking-wider mb-1">
-                          Approx. Area
-                        </label>
-                        <select
-                          value={formData.area}
-                          onChange={(e) =>
-                            setFormData({ ...formData, area: e.target.value })
-                          }
-                          className="w-full px-2.5 py-2 bg-white border border-[#dcd3c3] rounded-lg text-xs focus:outline-none focus:ring-2 focus:ring-[#c5a059] text-[#1c1917]"
-                        >
-                          <option value="Under 3,000 sq.ft.">
-                            &lt; 3,000 sq.ft.
-                          </option>
-                          <option value="3,000 – 10,000 sq.ft.">
-                            3,000 – 10,000 sq.ft.
-                          </option>
-                          <option value="10,000 – 25,000 sq.ft.">
-                            10,000 – 25,000 sq.ft.
-                          </option>
-                          <option value="25,000+ sq.ft.">25,000+ sq.ft.</option>
-                        </select>
-                      </div>
-                    </div>
-
-                    <button
-                      type="submit"
-                      disabled={isSubmitting}
-                      className="gold-gradient-btn w-full mt-2 py-2.5 px-4 rounded-lg text-xs sm:text-sm font-semibold text-white tracking-wide flex items-center justify-center gap-2 shadow-md transition-all cursor-pointer"
-                    >
-                      <span>
-                        {isSubmitting
-                          ? "Submitting..."
-                          : "Book Free Consultation"}
-                      </span>
-                      <ArrowRight className="w-3.5 h-3.5 text-white" />
-                    </button>
-
-                    <p className="text-[10px] text-center text-[#78716c] pt-1 flex items-center justify-center gap-1">
-                      <span>🔒 100% Free consultation</span>
-                      <span>•</span>
-                      <span>No obligation</span>
-                      <span>•</span>
-                      <span>Zero spam</span>
-                    </p>
-                  </form>
-                </div>
-              )}
+                  <p className="text-[10px] text-center text-[#78716c] pt-1 flex items-center justify-center gap-1">
+                    <span>🔒 100% Free consultation</span>
+                    <span>•</span>
+                    <span>No obligation</span>
+                    <span>•</span>
+                    <span>Zero spam</span>
+                  </p>
+                </form>
+              </div>
             </div>
           </div>
         </div>
