@@ -220,11 +220,22 @@ export default function Hero({ onOpenConsultation }) {
                     <label className="block text-[11px] font-semibold text-[#423c36] uppercase tracking-wider mb-1">
                       Full Name *
                     </label>
+
                     <input
                       name="name"
                       type="text"
                       required
                       placeholder="Your Full Name"
+                      minLength={2}
+                      maxLength={60}
+                      pattern="[A-Za-z\u00C0-\u024F]+(?:[ '-][A-Za-z\u00C0-\u024F]+)*"
+                      title="Enter a valid name using letters, spaces, apostrophes, or hyphens."
+                      onInput={(e) => {
+                        e.target.value = e.target.value.replace(
+                          /[^A-Za-z\u00C0-\u024F '\-]/g,
+                          "",
+                        );
+                      }}
                       className="w-full px-3 py-2 bg-white border border-[#dcd3c3] rounded-lg text-xs sm:text-sm focus:outline-none focus:ring-2 focus:ring-[#c5a059] transition-all text-[#1c1917]"
                     />
                   </div>
@@ -233,11 +244,22 @@ export default function Hero({ onOpenConsultation }) {
                     <label className="block text-[11px] font-semibold text-[#423c36] uppercase tracking-wider mb-1">
                       Phone / WhatsApp *
                     </label>
+
                     <input
                       name="phone"
                       type="tel"
                       required
-                      placeholder="+91 / WhatsApp Number"
+                      placeholder="Enter 10-digit mobile number"
+                      minLength={10}
+                      maxLength={10}
+                      pattern="[0-9]{10}"
+                      inputMode="numeric"
+                      onInput={(e) => {
+                        e.target.value = e.target.value
+                          .replace(/\D/g, "")
+                          .slice(0, 10);
+                      }}
+                      title="Please enter exactly 10 digits."
                       className="w-full px-3 py-2 bg-white border border-[#dcd3c3] rounded-lg text-xs sm:text-sm focus:outline-none focus:ring-2 focus:ring-[#c5a059] transition-all text-[#1c1917]"
                     />
                   </div>
@@ -247,10 +269,16 @@ export default function Hero({ onOpenConsultation }) {
                       <label className="block text-[11px] font-semibold text-[#423c36] uppercase tracking-wider mb-1">
                         Service Required *
                       </label>
+
                       <select
                         name="service"
+                        required
+                        defaultValue=""
                         className="w-full px-2.5 py-2 bg-white border border-[#dcd3c3] rounded-lg text-xs focus:outline-none focus:ring-2 focus:ring-[#c5a059] text-[#1c1917]"
                       >
+                        <option value="" disabled>
+                          Select a service
+                        </option>
                         <option value="Healthcare">
                           Healthcare (Clinics/Hospitals)
                         </option>
@@ -268,12 +296,18 @@ export default function Hero({ onOpenConsultation }) {
 
                     <div>
                       <label className="block text-[11px] font-semibold text-[#423c36] uppercase tracking-wider mb-1">
-                        Approx. Area
+                        Approx. Area *
                       </label>
+
                       <select
                         name="area"
+                        required
+                        defaultValue=""
                         className="w-full px-2.5 py-2 bg-white border border-[#dcd3c3] rounded-lg text-xs focus:outline-none focus:ring-2 focus:ring-[#c5a059] text-[#1c1917]"
                       >
+                        <option value="" disabled>
+                          Select an area
+                        </option>
                         <option value="Under 3,000 sq.ft.">
                           &lt; 3,000 sq.ft.
                         </option>
