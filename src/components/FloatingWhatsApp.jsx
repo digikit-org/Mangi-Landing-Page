@@ -3,7 +3,7 @@ import { Phone } from "lucide-react";
 import WhatsAppIcon from "./WhatsAppIcon";
 
 export default function FloatingWhatsApp() {
-  const phone = "918088196750";
+  const phone = "7742036962";
 
   return (
     <div className="fixed bottom-6 right-5 sm:right-6 z-50 flex flex-col items-end gap-2.5 select-none">
